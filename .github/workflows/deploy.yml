@@ -4,6 +4,7 @@ jobs:
   SFDX-CLI-Deploy:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "Dhakshinesh's edit 1"
       - run: echo "🐧 GitHub Action running on ${{ runner.os }}"
       - run: echo "🔎 Retrieving ${{ github.ref }} from ${{ github.repository }}."
       - uses: actions/checkout@v3
