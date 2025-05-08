@@ -22,7 +22,9 @@ jobs:
         run: npm install sfdx-cli --global
 
       - name: Authenticate to Salesforce using JWT
-        run: sfdx force:auth:jwt:grant --clientid=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwtkeyfile=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --setdefaultdevhubusername
+        run: |
+          echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
+          sfdx force:auth:jwt:grant --clientid=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwtkeyfile=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --setdefaultdevhubusername
            
 
       - name: Deploy using package.xml
