@@ -18,10 +18,7 @@ jobs:
         run: |
           echo "🐧 GitHub Action running on ${{ runner.os }}"
           echo "🔎 Retrieving ${{ github.ref }} from ${{ github.repository }}."
-      - name: Print Public and Local IP Address
-        run: |
-          echo "🌍 Public IP:"
-          curl -s https://api.ipify.org
+      
 
       - name: Checkout repository
         uses: actions/checkout@v4
