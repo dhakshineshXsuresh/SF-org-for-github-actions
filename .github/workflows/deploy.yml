@@ -25,11 +25,10 @@ jobs:
         run: |
           echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
           sfdx force:auth:jwt:grant \
-            --client-id ${{ secrets.CONSUMER_KEY }} \
+            --clientid ${{ secrets.CONSUMER_KEY }} \
             -f server.key \
             --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
-            -r ${{ secrets.INSTANCE_URL }} \
-            --alias myOrg 
+            -r ${{ secrets.INSTANCE_URL }}
            
 
       - name: Deploy using package.xml
