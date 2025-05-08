@@ -13,5 +13,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: npm install sfdx-cli -g
       - run: echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
-      - run: sfdx force:auth:jwt:grant --clientid=${{ secrets.CONSUMER_KEY }} --jwtkeyfile=server.key --username=${{ secrets.DEPLOYMENT_USER_NAME }} --setdefaultdevhubusername
+      - run: sfdx force:auth:jwt:grant --clientid=${{ secrets.CONSUMER_KEY }} --jwtkeyfile=server.key --username=${{ secrets.DEPLOYMENT_USER_NAME }} -r ${{ secrets.INSTANCE_URL }}
       - run: sfdx force:source:deploy --manifest=manifest/package.xml --testlevel=RunLocalTests -u ${{ secrets.DEPLOYMENT_USER_NAME }}
