@@ -24,7 +24,7 @@ jobs:
       - name: Authenticate to Salesforce using JWT
         run: |
           echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
-          sfdx auth:jwt:grant \
+          sfdx force:auth:jwt:grant \
             --client-id ${{ secrets.CONSUMER_KEY }} \
             -f server.key \
             --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
