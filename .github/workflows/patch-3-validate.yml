@@ -2,7 +2,7 @@ name: SFDX-CLI Validate-only from PATCH-3 branch
 on:
   push:
     branches:
-      - main  # Trigger on pull requests to the 'main' branch
+      - dhakshineshXsuresh-patch-3  # Trigger on pull requests to the 'main' branch
   workflow_dispatch:
 jobs:
   SFDX-CLI-Deploy:
