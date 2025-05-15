@@ -4,6 +4,11 @@ on:
     branches:
       - main  # Trigger on pull requests to the 'main' branch
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run this workflow against'
+        required: true
+        default: 'main'
 jobs:
   SFDX-CLI-Deploy:
     runs-on: ubuntu-latest
