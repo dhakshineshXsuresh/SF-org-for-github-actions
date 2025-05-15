@@ -1,0 +1,35 @@
+name: SFDX-CLI Validate-only from PATCH-3 branch
+on:
+  push:
+    branches:
+      - main  # Trigger on pull requests to the 'main' branch
+  workflow_dispatch:
+jobs:
+  SFDX-CLI-Deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Log environment info
+        run: |
+          echo "🐧 GitHub Action running on ${{ runner.os }}"
+          echo "🔎 Retrieving ${{ github.ref }} from ${{ github.repository }}."
+      
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install sfdx-cli -g
+
+      - name: Authenticate to Salesforce using JWT
+        run: |
+          echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
+          sfdx force:auth:jwt:grant \
+            --clientid ${{ secrets.CONSUMER_KEY }} \
+            -f server.key \
+            --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
+            -r ${{ secrets.INSTANCE_URL }}
+           
+
+      - name: Deploy using package.xml
+        run: sfdx force:source:deploy --manifest=manifest/package.xml --testlevel=RunLocalTests -u ${{ secrets.DEPLOYMENT_USER_NAME }} --checkonly
