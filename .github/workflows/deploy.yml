@@ -34,9 +34,6 @@ jobs:
 
       - name: Deploy using package.xml
         run: |
-            # Read the tests from the file and create a comma-separated list
-            test_methods=$(tr '\n' ',' < tests.txt | sed 's/,$//')
-            echo "Test Methods: $test_methods"
-            sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destructive-changes/destruction.xml --testlevel RunSpecifiedTests --runtests "$test_methods" -u ${{ secrets.DEPLOYMENT_USER_NAME }} 
+            sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destructive-changes/destruction.xml --testlevel=RunLocalTests -u ${{ secrets.DEPLOYMENT_USER_NAME }} 
 
 
