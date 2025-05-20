@@ -29,8 +29,8 @@ jobs:
             --clientid ${{ secrets.CONSUMER_KEY }} \
             -f server.key \
             --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
-            -r ${{ secrets.INSTANCE_URL }}
-            -a orgAlias
+            -r ${{ secrets.INSTANCE_URL }} -a orgAlias
+            
            
 
       - name: Deploy using package.xml
