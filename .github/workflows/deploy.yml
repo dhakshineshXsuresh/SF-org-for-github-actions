@@ -35,7 +35,7 @@ jobs:
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
       - name: Deploy using package.xml
         run:
-         sf project deploy  -o orgAlias --manifest=manifest/package.xml --testlevel RunLocalTests --post-destructive-changes=destruction.xml
+         sf project deploy start  -o orgAlias --manifest=manifest/package.xml --testlevel RunLocalTests --post-destructive-changes=destruction.xml
             
 
 
