@@ -8,6 +8,7 @@ on:
 jobs:
   SFDX-CLI-Deploy:
     runs-on: ubuntu-latest
+    environment: SF-org
     
     steps:
       - name: Log environment info
@@ -22,20 +23,25 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Authenticate to Salesforce using JWT
+      # - name: Authenticate to Salesforce using JWT
+      #   run: |
+      #     echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
+      #     sfdx force:auth:jwt:grant \
+      #       --clientid ${{ secrets.CONSUMER_KEY }} \
+      #       -f server.key \
+      #       --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
+      #       -r ${{ secrets.INSTANCE_URL }} -a orgAlias
+
+      - name: Printing secret and variable
         run: |
-          echo "${{ secrets.JWT_SERVER_KEY }}" > server.key
-          sfdx force:auth:jwt:grant \
-            --clientid ${{ secrets.CONSUMER_KEY }} \
-            -f server.key \
-            --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
-            -r ${{ secrets.INSTANCE_URL }} -a orgAlias
-            
+          echo "Secret ${{ secrets.DK_SECRET1 }}"
+          echo "Variable ${{ $DK_VAR1 }}"
+          echo $DK_VAR1
            
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
-      - name: Deploy using package.xml
-        run:
-         sf project deploy start  -o orgAlias --manifest=manifest/package.xml --test-level=RunLocalTests --post-destructive-changes=destruction.xml
+    #  - name: Deploy using package.xml
+     #   run:
+     #    sf project deploy start  -o orgAlias --manifest=manifest/package.xml --test-level=RunLocalTests --post-destructive-changes=destruction.xml
             
 
 
