@@ -17,11 +17,11 @@ jobs:
           echo "🔎 Retrieving ${{ github.ref }} from ${{ github.repository }}."
       
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      # - name: Checkout repository
+      #   uses: actions/checkout@v4
 
-      - name: Install Salesforce CLI
-        run: npm install -g @salesforce/cli
+      # - name: Install Salesforce CLI
+      #   run: npm install -g @salesforce/cli
 
       # - name: Authenticate to Salesforce using JWT
       #   run: |
@@ -49,7 +49,7 @@ jobs:
           echo "Printing ENV"
           env
           echo "printing DK VAR variables"
-          env | grep '^DK_VAR' | while ...
+          env | grep '^DK_VAR' | while IFS='=' read -r key value; do echo "$key: $value"; done
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
     #  - name: Deploy using package.xml
      #   run:
