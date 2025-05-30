@@ -36,7 +36,7 @@ jobs:
         run: |
           echo "Secret ${{ secrets.DK_SECRET1 }}"
           echo "Variable ${{ $DK_VAR1 }}"
-          echo $DK_VAR1
+          echo "$DK_VAR1"
            
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
     #  - name: Deploy using package.xml
