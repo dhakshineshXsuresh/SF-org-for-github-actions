@@ -48,6 +48,8 @@ jobs:
           echo "Value of DK_VAR1 (as shell env var): $DK_VAR1"
           echo "Printing ENV"
           env
+          echo "printing DK VAR variables"
+          env | grep '^DK_VAR' | while ...
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
     #  - name: Deploy using package.xml
      #   run:
