@@ -32,11 +32,20 @@ jobs:
       #       --username ${{ secrets.DEPLOYMENT_USER_NAME }} \
       #       -r ${{ secrets.INSTANCE_URL }} -a orgAlias
 
+      # - name: Printing secret and variable
+      #   run: |
+      #     echo "Secret ${{ secrets.DK_SECRET1 }}"
+      #     echo "Variable ${{ $DK_VAR1 }}"
+      #     echo "DK_VAR1"
       - name: Printing secret and variable
         run: |
-          echo "Secret ${{ secrets.DK_SECRET1 }}"
-          echo "Variable ${{ $DK_VAR1 }}"
-          echo "DK_VAR1"
+          echo "Value of DK_SECRET1: ${{ secrets.DK_SECRET1 }}" # Correctly access the secret
+          echo "Value of DK_VAR1 (via vars context): ${{ vars.DK_VAR1 }}" # Correct for GitHub repository/environment variables
+          echo "Value of DK_VAR1 (via env context, if set): ${{ env.DK_VAR1 }}" # For runner-specific env vars
+          # This will print the shell environment variable if it's been set in a previous step
+          # or if it's a default GitHub Actions environment variable.
+          # If DK_VAR1 is NOT set as a shell env var, this will be empty.
+          echo "Value of DK_VAR1 (as shell env var): $DK_VAR1"
            
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
     #  - name: Deploy using package.xml
