@@ -48,8 +48,11 @@ jobs:
           echo "Value of DK_VAR1 (as shell env var): $DK_VAR1"
           echo "Printing ENV"
           env
-          echo "printing DK VAR variables"
-          env | grep '^DK_VAR' | while IFS='=' read -r key value; do echo "$key: $value"; done
+          echo "--- Printing DK_VAR variables ---"
+          # Use '-i' flag with grep for case-insensitive matching
+          env | grep -i '^DK_VAR' | while IFS='=' read -r key value; do
+            echo "$key: $value"
+          done
 #sfdx force:source:deploy --manifest=manifest/package.xml --destructivechanges destruction.xml --testlevel=RunLocalTests -u orgAlias
     #  - name: Deploy using package.xml
      #   run:
