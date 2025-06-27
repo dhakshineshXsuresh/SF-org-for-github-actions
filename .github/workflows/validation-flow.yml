@@ -1,13 +1,12 @@
 name: SFDX-CLI Validate-only from Repository
 on:
-  push:
-    branches:
-      - main  # Trigger on pull requests to the 'main' branch
-  workflow_dispatch:
+  issue_comment:
+    types: [created]
 
 jobs:
   SFDX-CLI-Deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/validate') }}
     
     steps:
       - name: Log environment info
